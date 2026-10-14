@@ -41,15 +41,15 @@ add_filter( 'gatherpress_autoloader', 'gatherpress_org_plugin_autoloader' );
 /**
  * Initializes the GatherPress Org Plugin setup.
  *
- * This function hooks into the 'plugins_loaded' action to ensure that
- * the GatherPress_Org_Plugin\Setup instance is created once all plugins are loaded,
- * only if the GatherPress plugin is active.
+ * Hooked on `gatherpress_loaded`, which GatherPress fires only after its own
+ * requirements check passes. The GATHERPRESS_* constants are defined before
+ * that check, so booting on `defined( 'GATHERPRESS_VERSION' )` called into
+ * classes whose autoloader was never registered when GatherPress bailed, and
+ * fataled the site.
  *
  * @return void
  */
 function gatherpress_org_plugin_setup(): void {
-	if ( defined( 'GATHERPRESS_VERSION' ) ) {
-		GatherPress_Org_Plugin\Setup::get_instance();
-	}
+	GatherPress_Org_Plugin\Setup::get_instance();
 }
-add_action( 'plugins_loaded', 'gatherpress_org_plugin_setup' );
+add_action( 'gatherpress_loaded', 'gatherpress_org_plugin_setup' );
