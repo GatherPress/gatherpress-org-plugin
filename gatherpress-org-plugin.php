@@ -1,16 +1,17 @@
 <?php
 /**
- * Plugin Name:  GatherPress Org
- * Plugin URI:   https://gatherpress.org/
- * Description:  Site-specific functionality for gatherpress.org, including the Releases post type and taxonomy.
- * Author:       The GatherPress Community
- * Author URI:   https://gatherpress.org/
- * Version:      1.0.0
- * Requires PHP: 7.4
- * Text Domain:  gatherpress-org-plugin
- * Domain Path:  /languages
- * License:      GNU General Public License v2.0 or later
- * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+ * Plugin Name:       GatherPress Org
+ * Plugin URI:        https://gatherpress.org/
+ * Description:       Site-specific functionality for gatherpress.org, including the Releases post type and taxonomy.
+ * Author:            The GatherPress Community
+ * Author URI:        https://gatherpress.org/
+ * Version:           1.0.0
+ * Requires PHP:      8.1
+ * Requires at least: 7.0
+ * Text Domain:       gatherpress-org-plugin
+ * Domain Path:       /languages
+ * License:           GNU General Public License v2.0 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  *
  * @package GatherPress_Org_Plugin
  */
@@ -19,7 +20,10 @@
 defined( 'ABSPATH' ) || exit; // @codeCoverageIgnore
 
 // Constants.
-define( 'GATHERPRESS_ORG_PLUGIN_VERSION', current( get_file_data( __FILE__, array( 'Version' ), 'plugin' ) ) );
+define(
+	'GATHERPRESS_ORG_PLUGIN_VERSION',
+	get_file_data( __FILE__, array( 'Version' => 'Version' ), 'plugin' )['Version']
+);
 define( 'GATHERPRESS_ORG_PLUGIN_CORE_PATH', __DIR__ );
 
 /**
